@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Labs - Ai Model</title>
+</head>
+<body>
+
+<form id="inputForm">
+    <label>Choose a model:
+        <select id="modelSelect">
+            <!-- Populate dynamically with the models from your map -->
+            <option value="assistant">assistant</option>
+            <!-- ... -->
+        </select>
+    </label>
+    <br>
+    <textarea id="textInput" placeholder="Enter text..."></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+    const ws = new WebSocket("ws://localhost:8080/ws");
+
+    document.getElementById('inputForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const model = document.getElementById('modelSelect').value;
+        const text = document.getElementById('textInput').value;
+
+        ws.send(JSON.stringify({
+            model: model,
+            content: text
+        }));
+    });
+
+    ws.onmessage = function(event) {
+        document.getElementById('response').textContent = event.data;
+    };
+</script>
+
+<br />
+<br />
+<br />
+
+<center>
+POWERED BY JACKYKIT,  <a href="https://3jk.net">JK Labs</a>
+</center>
+
+</body>
+</html>
+
