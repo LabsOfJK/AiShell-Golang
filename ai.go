@@ -1,6 +1,9 @@
 package main
 
-// This AI shell was developed by Jacky Kit using Go to test performance.
+
+// AiShell-Golang
+
+// This AI shell was developed by Jacky Kit using Golang to test performance.
 // JK Labs
 // https://3jk.net
 // mail@jackykit.com
